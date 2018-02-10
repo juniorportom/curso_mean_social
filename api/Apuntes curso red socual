@@ -1,0 +1,28 @@
+Comandos mongo
+
+PATH=/Users/juniorportom/mongodb/bin:$PATH
+
+mongod
+
+npm init
+
+npm install express --all
+
+npm install bcrypt-nodejs --save
+
+npm install body-parser --all
+
+npm install connect-multiparty --save
+
+npm install mongoose --save
+
+npm install jwt-simple --save
+
+npm install moment --save
+
+npm install nodemon --save-dev
+
+node index.js
+
+npm start
+
