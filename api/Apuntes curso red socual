@@ -26,3 +26,8 @@ node index.js
 
 npm start
 
+
+
+----- Errores
+
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client,  Este error ocurre cuando se estan enviando dos respuesta al cliente con la misma paticion
