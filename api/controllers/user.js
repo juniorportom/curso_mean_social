@@ -73,8 +73,33 @@ function saveUser(req, res){
 	}
 }
 
+function loginUser(req, res){
+	var params = req.body;
+
+	var email = params.email;
+	var password = params.password;
+
+	User.findOne({email}, (error, user)=>{
+		if(error) return res.status(500).send({message: 'Error en la petición'});
+
+		if(user){
+			bcrypt.compare(password, user.password, (error, check) =>{
+				if(check){
+					res.status(200).send({user});
+				}else{
+					res.status(404).send({message: 'El usuario no se ha podido identificar'});
+				}
+			});
+		}else{
+			res.status(404).send({message: 'El usuario no se ha podido identificar !!'});
+		}
+	});
+}
+
 module.exports = {
 	home,
 	pruebas,
-	saveUser
+	saveUser,
+	loginUser
 }
+
