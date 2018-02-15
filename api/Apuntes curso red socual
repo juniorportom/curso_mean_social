@@ -4,23 +4,25 @@ PATH=/Users/juniorportom/mongodb/bin:$PATH
 
 mongod
 
-npm init
+npm init            //Empezar un royecto nodejs
 
-npm install express --all
+npm install express --all		//Permite levantar un servidor, y el menejo de rutas y comandos http
 
-npm install bcrypt-nodejs --save
+npm install bcrypt-nodejs --save 		//Permite emcriptar valores
 
-npm install body-parser --all
+npm install body-parser --all			// Permite parsear los objetos json a javascript y biseversa
 
 npm install connect-multiparty --save
 
-npm install mongoose --save
+npm install mongoose --save  		 //Permite manejar el orm de mongo
 
-npm install jwt-simple --save
+npm install jwt-simple --save 			//Permite manejar tokens para asegurar metodos del api
 
-npm install moment --save
+npm install moment --save 				// Permite manejar los objetos de tiempo y calendario
 
-npm install nodemon --save-dev
+npm install mongoose-pagination --save  	// Permite devolver la lista de usuarios paginados
+
+npm install nodemon --save-dev				// Permite levantar un servidor de pruebas, adicional de adicionar todos cambios en tiempo real
 
 node index.js
 
