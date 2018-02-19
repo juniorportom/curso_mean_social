@@ -10,7 +10,7 @@ var mongoosePaginate = require('mongoose-pagination');
 
 var fs = require('fs');  // Libreria de file systemn de Node
 
-var pasth = require('path');  //Libreria para el manejo de rutas
+var path = require('path');  //Libreria para el manejo de rutas
 
 function home (req, res){
 	res.status(200).send({
@@ -223,6 +223,19 @@ function removeFilesOfUploads(res, filePath, message, status){
 }
 
 
+function getImageFile(req, res){
+	var imageFile = req.params.imageFile;
+	var pathImage = './uploads/users/' + imageFile;
+	fs.exists(pathImage, (exists)=>{
+		console.log(pathImage);
+		if(exists){			
+			return res.sendFile(path.resolve(pathImage));
+		}else{
+			return res.status(404).send({message: 'No existe la imagen ...'});
+		}
+	});
+}
+
 module.exports = {
 	home,
 	pruebas,
@@ -231,6 +244,7 @@ module.exports = {
 	getUser,
 	getUsers,
 	updateUser,
-	uploadImage
+	uploadImage,
+	getImageFile
 }
 
