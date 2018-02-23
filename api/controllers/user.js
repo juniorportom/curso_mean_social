@@ -6,6 +6,8 @@ var bcrypt = require('bcrypt-nodejs');
 
 var jwt = require('../services/jwt');
 
+var Follow = require('../models/follow');
+
 var mongoosePaginate = require('mongoose-pagination');
 
 var fs = require('fs');  // Libreria de file systemn de Node
@@ -128,10 +130,64 @@ function getUser(req, res){
 
 		if(!user) return res.status(404).send({message: 'Usuario no existe'});
 
-		return res.status(200).send({user});
+		followThisUser(req.user.sub, userId).then((value)=>{
+			//console.log(value);
+			user.password = undefined;
+			return res.status(200).send({
+				user, 
+				following: value.following,
+				followed: value.followed
+			});
 
+		});
 	});
 }
+
+async function followThisUser(identity_user_id, user_id){
+    try {
+        var following = await Follow.findOne({ user: identity_user_id, followed: user_id}).exec()
+            .then((following) => {
+                console.log(following);
+                return following;
+            })
+            .catch((err)=>{
+                return handleerror(err);
+            });
+        var followed = await Follow.findOne({ user: user_id, followed: identity_user_id}).exec()
+            .then((followed) => {
+                console.log(followed);
+                return followed;
+            })
+            .catch((err)=>{
+                return handleerror(err);
+            });
+        return {
+            following: following,
+            followed: followed
+        }
+    } catch(e){
+        console.log(e);
+    }
+}
+
+/*async function followThisUser(identityUserId, userId){
+	var following = await Follow.findOne({'user': identityUserId, 'followed': userId}).exec((error, follow)=>{
+			if(error) return handleError(error);
+			console.log(follow);
+			return follow;
+		});	
+
+	var followed = await Follow.findOne({'user': userId, 'followed': identityUserId}).exec((error, follow)=>{
+			if(error) return handleError(error);
+			console.log(follow);
+			return follow;
+		});	
+
+	return {
+		'following': following,
+		'followed': followed
+	}
+}*/
 
 // Devolver un listado de usuarios paginados
 function getUsers(req, res){
