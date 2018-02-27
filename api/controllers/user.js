@@ -143,32 +143,7 @@ function getUser(req, res){
 	});
 }
 
-async function followThisUser(identity_user_id, user_id){
-    try {
-        var following = await Follow.findOne({ user: identity_user_id, followed: user_id}).exec()
-            .then((following) => {
-                console.log(following);
-                return following;
-            })
-            .catch((err)=>{
-                return handleerror(err);
-            });
-        var followed = await Follow.findOne({ user: user_id, followed: identity_user_id}).exec()
-            .then((followed) => {
-                console.log(followed);
-                return followed;
-            })
-            .catch((err)=>{
-                return handleerror(err);
-            });
-        return {
-            following: following,
-            followed: followed
-        }
-    } catch(e){
-        console.log(e);
-    }
-}
+
 
 /*async function followThisUser(identityUserId, userId){
 	var following = await Follow.findOne({'user': identityUserId, 'followed': userId}).exec((error, follow)=>{
@@ -204,12 +179,128 @@ function getUsers(req, res){
 
 		if(!users) return res.status(404).send({message: 'No hay usuarios disponibles'});
 
-		return res.status(200).send({
-			users,
-			total,
-			pages: Math.ceil(total/itemsPerPage)
-		});
+		followUserIds(identityUserId).then((value)=>{
+			return res.status(200).send({
+				users,
+				userFollowing: value.following,
+				userFollowMe: value.followed,
+				total,
+				pages: Math.ceil(total/itemsPerPage)
+			});
+		});		
 	});
+}
+
+
+async function followThisUser(identity_user_id, user_id){
+    try {
+        var following = await Follow.findOne({ user: identity_user_id, followed: user_id}).exec()
+            .then((following) => {
+                console.log(following);
+                return following;
+            })
+            .catch((err)=>{
+                return handleError(err);
+            });
+        var followed = await Follow.findOne({ user: user_id, followed: identity_user_id}).exec()
+            .then((followed) => {
+                console.log(followed);
+                return followed;
+            })
+            .catch((err)=>{
+                return handleError(err);
+            });
+        return {
+            following: following,
+            followed: followed
+        }
+    } catch(e){
+        console.log(e);
+    }
+}
+
+/*async function followUserIds(userId){
+	try{
+		var following = await Follow.find({'user':userId}).select({'_id':0, '__v':0, 'user': 0}).exec().then((follows)=>{
+			var followsClean = [];
+			console.log(follows);
+			if(follows){
+				follows.forEach((follow)=>{
+					followsClean.push(follow.followed);			
+				});
+			}			
+			return followsClean;
+		})
+		.catch((err)=>{
+                return handleError(err);
+            });
+
+		var followed = await Follow.find({'followed':userId}).select({'_id':0, '__v':0, 'followed': 0}).exec().then((follows)=>{
+			var followsClean = [];
+			console.log(follows);
+			if(follows){
+				follows.forEach((follow)=>{
+					followsClean.push(follow.user);			
+				});
+			}			
+			return followsClean;
+		})
+		.catch((err)=>{
+                return handleError(err);
+            });
+
+		return {
+			following: following,
+			followed: followed
+		}
+	}catch(e){
+		console.log(e);
+	}
+	
+}*/
+
+
+async function followUserIds(userId){
+	try{
+		var following = await Follow.find({'user':userId}).select({'_id':0, '__v':0, 'user': 0}).exec().then((follows)=>{			
+			return follows;
+		})
+		.catch((err)=>{
+                return handleError(err);
+            });
+
+		var followed = await Follow.find({'followed':userId}).select({'_id':0, '__v':0, 'followed': 0}).exec().then((follows)=>{			
+			return follows;
+		})
+		.catch((err)=>{
+                return handleError(err);
+            });
+
+		var followingsClean = [];
+
+		if(following){
+			following.forEach((follow)=>{
+				followingsClean.push(follow.followed);			
+			});
+		}
+
+		var followedsClean = [];
+
+		if(followed){
+			console.log(followed);
+			followed.forEach((follow)=>{
+				followedsClean.push(follow.user);			
+			});
+		}
+
+		return {
+			following: followingsClean,
+			followed: followedsClean
+		}
+	}catch(e){
+		console.log(e);
+	}
+	
 }
 
 // Edición de datos de usuario
@@ -292,6 +383,46 @@ function getImageFile(req, res){
 	});
 }
 
+function getCounters(req, res){
+	var userId = req.user.sub;
+
+	if(req.params.id){
+		userId = req.params.id;
+	}
+
+	getCountFollow(userId).then((value)=>{
+		return res.status(200).send({value});
+
+	});
+
+
+}
+
+async function getCountFollow(userId){
+	try{
+		var following = await Follow.count({'user': userId}).exec().then((count)=>{
+			console.log(count);
+			return count;
+		}).catch((error)=>{
+                return handleError(error);
+            });
+
+		var followed = await Follow.count({'followed': userId}).exec().then((count)=>{
+			console.log(count);
+			return count;
+		}).catch((error)=>{
+                return handleError(error);
+            });
+
+		return {
+			following: following,
+			followed: followed
+		}
+	}catch(e){
+		console.log(e);
+	}
+}
+
 module.exports = {
 	home,
 	pruebas,
@@ -301,6 +432,7 @@ module.exports = {
 	getUsers,
 	updateUser,
 	uploadImage,
-	getImageFile
+	getImageFile,
+	getCounters
 }
 
