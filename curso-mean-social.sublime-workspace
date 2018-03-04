@@ -4,6 +4,150 @@
 		"selected_items":
 		[
 			[
+				"ex",
+				"exec"
+			],
+			[
+				"follo",
+				"followedsClean"
+			],
+			[
+				"follow",
+				"following"
+			],
+			[
+				"han",
+				"handleError"
+			],
+			[
+				"un",
+				"undefined"
+			],
+			[
+				"fo",
+				"followThisUser"
+			],
+			[
+				"iden",
+				"identityUserId"
+			],
+			[
+				"get",
+				"getFollowedUsers"
+			],
+			[
+				"pa",
+				"params"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"folo",
+				"FollowController"
+			],
+			[
+				"fol",
+				"followRoutes"
+			],
+			[
+				"path",
+				"pathImage"
+			],
+			[
+				"user",
+				"UserController"
+			],
+			[
+				"findB",
+				"findByIdAndUpdate"
+			],
+			[
+				"file",
+				"filePath"
+			],
+			[
+				"ext",
+				"extSplit"
+			],
+			[
+				"para",
+				"params"
+			],
+			[
+				"update",
+				"updateUser"
+			],
+			[
+				"e",
+				"ensureAuth"
+			],
+			[
+				"p",
+				"payload"
+			],
+			[
+				"au",
+				"authorization"
+			],
+			[
+				"use",
+				"UserController"
+			],
+			[
+				"b",
+				"bcrypt"
+			],
+			[
+				"se",
+				"send"
+			],
+			[
+				"to",
+				"toLowerCase"
+			],
+			[
+				"save",
+				"saveUser"
+			],
+			[
+				"re",
+				"require"
+			],
+			[
+				"n",
+				"nick"
+			],
+			[
+				"body",
+				"bodyParser"
+			],
+			[
+				"M",
+				"MessageSchema"
+			],
+			[
+				"mo",
+				"mongoose"
+			],
+			[
+				"Fol",
+				"FollowSchema"
+			],
+			[
+				"P",
+				"PublicationSchema"
+			],
+			[
+				"S",
+				"Schema"
+			],
+			[
+				"s",
+				"Schema"
+			],
+			[
 				"node",
 				"nodemon"
 			]
@@ -12,30 +156,31 @@
 	"buffers":
 	[
 		{
-			"file": "api/package.json",
+			"file": "api/Apuntes curso red socual",
 			"settings":
 			{
-				"buffer_size": 605,
+				"buffer_size": 1122,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "api/index.js",
+			"file": "api/controllers/publication.js",
 			"settings":
 			{
-				"buffer_size": 521,
+				"buffer_size": 14,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "api/app.js",
+			"file": "/Users/juniorportom/Library/Application Support/Sublime Text 3/Packages/User/JavaScript.sublime-build",
 			"settings":
 			{
-				"buffer_size": 459,
+				"buffer_size": 56,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"line_ending": "Unix",
+				"name": "untitled.sublime-build"
 			}
 		}
 	],
@@ -72,10 +217,29 @@
 	"expanded_folders":
 	[
 		"/Users/juniorportom/projects/node/curso-mean-social",
-		"/Users/juniorportom/projects/node/curso-mean-social/api"
+		"/Users/juniorportom/projects/node/curso-mean-social/api",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/controllers",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/models",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/routes",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/uploads",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/uploads/users"
 	],
 	"file_history":
 	[
+		"/Users/juniorportom/projects/node/curso-mean-social/api/app.js",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/routes/user.js",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/controllers/user.js",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/controllers/follow.js",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/routes/follow.js",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/models/follow.js",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/package.json",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/index.js",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/models/message.js",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/middlewares/authenticated.js",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/services/jwt.js",
+		"/Users/juniorportom/projects/node/curso-mean-social/1. gitignore",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/models/publication.js",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/models/user.js",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/Apuntes curso red socual"
 	],
 	"find":
@@ -117,24 +281,24 @@
 			[
 				{
 					"buffer": 0,
-					"file": "api/package.json",
+					"file": "api/Apuntes curso red socual",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 605,
+						"buffer_size": 1122,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								204,
-								204
+								1122,
+								1122
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -145,19 +309,19 @@
 				},
 				{
 					"buffer": 1,
-					"file": "api/index.js",
+					"file": "api/controllers/publication.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 521,
+						"buffer_size": 14,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								410,
-								410
+								14,
+								14
 							]
 						],
 						"settings":
@@ -173,24 +337,24 @@
 				},
 				{
 					"buffer": 2,
-					"file": "api/app.js",
+					"file": "/Users/juniorportom/Library/Application Support/Sublime Text 3/Packages/User/JavaScript.sublime-build",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 459,
+						"buffer_size": 56,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								336,
-								336
+								56,
+								56
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -279,7 +443,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 322.0,
+	"side_bar_width": 270.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
