@@ -69,8 +69,93 @@ function getPublications(req, res){
 	});
 }
 
+function getPublication(req, res){
+	var publicationId = req.params.id;
+
+	Publication.findById(publicationId, (error, publication)=>{
+		if(error) return res.status(500).send({message: 'Error al obtener la publicación'});
+
+		if(!publication) return res.status(404).send({message: 'La publicación no existe!!!'});
+
+		return res.status(200).send({publication});
+	});
+}
+
+function deletePublication(req, res){
+	var publicationId = req.params.id;
+
+	Publication.find({'user': req.user.sub, '_id': publicationId}).remove(error =>{
+		if(error) return res.status(500).send({message: 'Error eliminando la publicación'});
+
+		return res.status(200).send({message: 'Publicación eliminada correctamente'});
+	});
+}
+
+// Subir archivos de imagen/avatar de usuario
+function uploadImage(req, res){
+	var publicationId = req.params.id;
+	if(req.files){
+		var filePath = req.files.image.path;
+		console.log(filePath);
+		var fileSplit = filePath.split(/[\\/]/);
+		var fileName = fileSplit.pop();
+		var extSplit = fileName.split('\.');
+		var ext = '';
+		if(extSplit.length > 1)
+			ext = extSplit.pop();
+
+		if(ext.toLowerCase() == 'png' || ext.toLowerCase() == 'jpg' || ext.toLowerCase() == 'gif' || ext.toLowerCase() == 'jpeg'){
+
+			Publication.findOne({'user': req.user.sub, '_id': publicationId}).exec((error, publication)=> {
+				if(publication){
+					Publication.findByIdAndUpdate(publicationId, {file: fileName}, {new: true}, (error, publicationUpdated)=>{
+						if(error) 
+							return removeFilesOfUploads(res, filePath, 'Error en la petición', 500);
+
+						if(!publicationUpdated) 
+							return removeFilesOfUploads(res, filePath, 'No se pudo actualizar la publicación', 500);
+
+						return res.status(200).send({publication: publicationUpdated});
+
+					});
+				}else{
+					return removeFilesOfUploads(res, filePath, 'No tiene permiso para actualizar esta publicación', 200);
+				}
+			});	
+		}else{
+			return removeFilesOfUploads(res, filePath, 'Extensión de imagen invalida', 200);
+		}
+	}else{
+		return res.status(200).send({message: 'No se han subido imagenes'});
+	}
+}
+
+function removeFilesOfUploads(res, filePath, message, status){
+	fs.unlink(filePath, (error)=> {
+		return res.status(status).send({message: message});
+	});
+}
+
+
+function getImageFile(req, res){
+	var imageFile = req.params.imageFile;
+	var pathImage = './uploads/publications/' + imageFile;
+	fs.exists(pathImage, (exists)=>{
+		console.log(pathImage);
+		if(exists){			
+			return res.sendFile(path.resolve(pathImage));
+		}else{
+			return res.status(404).send({message: 'No existe la imagen ...'});
+		}
+	});
+}
+
 module.exports = {
 	prueba,
 	savePublication,
-	getPublications
+	getPublications,
+	getPublication,
+	deletePublication,
+	uploadImage,
+	getImageFile
 }
