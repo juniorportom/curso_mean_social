@@ -8,6 +8,8 @@ var jwt = require('../services/jwt');
 
 var Follow = require('../models/follow');
 
+var Publication = require('../models/publication');
+
 var mongoosePaginate = require('mongoose-pagination');
 
 var fs = require('fs');  // Libreria de file systemn de Node
@@ -394,8 +396,6 @@ function getCounters(req, res){
 		return res.status(200).send({value});
 
 	});
-
-
 }
 
 async function getCountFollow(userId){
@@ -414,9 +414,17 @@ async function getCountFollow(userId){
                 return handleError(error);
             });
 
+		var publications = await Publication.count({'user': userId}).exec().then((count)=>{
+			console.log(count);
+			return count;
+		}).catch((error)=>{
+                return handleError(error);
+            });
+
 		return {
 			following: following,
-			followed: followed
+			followed: followed,
+			publications: publications
 		}
 	}catch(e){
 		console.log(e);
