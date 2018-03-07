@@ -45,7 +45,7 @@ function getReceivedMessages(req, res){
 
 	var itemsPerPage = 4;
 
-	Message.find({receiver: userId}).populate('emitter').paginate(page, itemsPerPage, (error, messages, total)=> {
+	Message.find({receiver: userId}).populate('emitter', '_id name surname nick image ').paginate(page, itemsPerPage, (error, messages, total)=> {
 		if(error) return res.status(500).send({message: 'Error en la petición'});
 
 		if(!messages) return res.status(404).send({message: 'No hay nensajes'});
