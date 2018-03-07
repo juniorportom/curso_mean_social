@@ -58,8 +58,33 @@ function getReceivedMessages(req, res){
 	});
 }
 
+function getEmittedMessages(req, res){
+	var userId = req.user.sub;
+
+	var page = 1;
+
+	if(req.params.page){
+		page = req.params.page;
+	}
+
+	var itemsPerPage = 4;
+
+	Message.find({emitter: userId}).populate('emitter receiver', '_id name surname nick image ').paginate(page, itemsPerPage, (error, messages, total)=> {
+		if(error) return res.status(500).send({message: 'Error en la petición'});
+
+		if(!messages) return res.status(404).send({message: 'No hay nensajes'});
+
+		return res.status(200).send({
+			messages,
+			total: total,
+			pages: Math.ceil(total/itemsPerPage)
+		})
+	});
+}
+
 module.exports = {
 	prueba,
 	saveMessage,
-	getReceivedMessages
+	getReceivedMessages,
+	getEmittedMessages
 }
