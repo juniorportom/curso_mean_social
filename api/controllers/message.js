@@ -24,6 +24,7 @@ function saveMessage(req, res){
 	message.receiver = params.receiver;
 	message.text = params.text;
 	message.created_at = moment().unix();
+	message.viewed = 'false';
 
 	message.save((error, messageStored)=>{
 		if(error) return res.status(500).send({message: 'Error en la pedición de guardado del mensaje'});
@@ -82,9 +83,33 @@ function getEmittedMessages(req, res){
 	});
 }
 
+function getUnviewedMessages(req, res){
+	var userId = req.user.sub;
+
+	Message.count({receiver: userId, viewed: 'false'}).exec((error, count)=>{
+		if(error) return res.status(500).send({message: 'Error en la petición'});
+
+		return res.status(200).send({'unviewed': count});
+	});
+}
+
+function setViewedMessages(req, res){
+	var userId = req.user.sub;
+
+	Message.update({receiver:userId, viewed: 'false'}, {viewed: 'true'}, {'multi': true}, (error, messagesUpdated)=>{
+		if(error) return res.status(500).send({message: 'Error en la petición'});
+
+		if(!messagesUpdated) return res.status(404).send({message: 'No hay mensajes a actualizar'});
+
+		return res.status(200).send({messages: messagesUpdated});
+	});
+}
+
 module.exports = {
 	prueba,
 	saveMessage,
 	getReceivedMessages,
-	getEmittedMessages
+	getEmittedMessages,
+	getUnviewedMessages,
+	setViewedMessages
 }
