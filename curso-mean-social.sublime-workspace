@@ -4,12 +4,96 @@
 		"selected_items":
 		[
 			[
-				"ex",
-				"exec"
+				"mess",
+				"MessageController"
+			],
+			[
+				"messa",
+				"messageUpdated"
+			],
+			[
+				"error",
+				"error"
+			],
+			[
+				"mesa",
+				"MessageController"
+			],
+			[
+				"re",
+				"receiver"
+			],
+			[
+				"mes",
+				"messages"
+			],
+			[
+				"at",
+				"mdAuth"
+			],
+			[
+				"S",
+				"String"
+			],
+			[
+				"publication",
+				"publicationId"
+			],
+			[
+				"md",
+				"mdUpload"
+			],
+			[
+				"uploD",
+				"uploadImage"
+			],
+			[
+				"publi",
+				"publicationId"
+			],
+			[
+				"publica",
+				"publicationRemoved"
+			],
+			[
+				"get",
+				"getPublications"
+			],
+			[
+				"publications",
+				"publications"
 			],
 			[
 				"follo",
-				"followedsClean"
+				"followsClean"
+			],
+			[
+				"user",
+				"userId"
+			],
+			[
+				"save",
+				"savePublication"
+			],
+			[
+				"pu",
+				"Publication"
+			],
+			[
+				"publicat",
+				"publicationStored"
+			],
+			[
+				"P",
+				"Publication"
+			],
+			[
+				"publo",
+				"PublicationController"
+			],
+			[
+				"ex",
+				"exec"
 			],
 			[
 				"follow",
@@ -32,10 +116,6 @@
 				"identityUserId"
 			],
 			[
-				"get",
-				"getFollowedUsers"
-			],
-			[
 				"pa",
 				"params"
 			],
@@ -54,10 +134,6 @@
 			[
 				"path",
 				"pathImage"
-			],
-			[
-				"user",
-				"UserController"
 			],
 			[
 				"findB",
@@ -108,14 +184,6 @@
 				"toLowerCase"
 			],
 			[
-				"save",
-				"saveUser"
-			],
-			[
-				"re",
-				"require"
-			],
-			[
 				"n",
 				"nick"
 			],
@@ -136,14 +204,6 @@
 				"FollowSchema"
 			],
 			[
-				"P",
-				"PublicationSchema"
-			],
-			[
-				"S",
-				"Schema"
-			],
-			[
 				"s",
 				"Schema"
 			],
@@ -156,31 +216,21 @@
 	"buffers":
 	[
 		{
+			"file": "api/app.js",
+			"settings":
+			{
+				"buffer_size": 1005,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "api/Apuntes curso red socual",
 			"settings":
 			{
-				"buffer_size": 1122,
+				"buffer_size": 1365,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "api/controllers/publication.js",
-			"settings":
-			{
-				"buffer_size": 14,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/juniorportom/Library/Application Support/Sublime Text 3/Packages/User/JavaScript.sublime-build",
-			"settings":
-			{
-				"buffer_size": 56,
-				"encoding": "UTF-8",
-				"line_ending": "Unix",
-				"name": "untitled.sublime-build"
 			}
 		}
 	],
@@ -219,28 +269,35 @@
 		"/Users/juniorportom/projects/node/curso-mean-social",
 		"/Users/juniorportom/projects/node/curso-mean-social/api",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/controllers",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/middlewares",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/models",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/routes",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/uploads",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/uploads/publications",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/uploads/users"
 	],
 	"file_history":
 	[
-		"/Users/juniorportom/projects/node/curso-mean-social/api/app.js",
-		"/Users/juniorportom/projects/node/curso-mean-social/api/routes/user.js",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/Apuntes curso red socual",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/models/message.js",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/controllers/message.js",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/routes/message.js",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/controllers/publication.js",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/routes/publication.js",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/controllers/user.js",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/app.js",
+		"/Users/juniorportom/Library/Application Support/Sublime Text 3/Packages/User/JavaScript.sublime-build",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/routes/user.js",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/controllers/follow.js",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/routes/follow.js",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/models/follow.js",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/package.json",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/index.js",
-		"/Users/juniorportom/projects/node/curso-mean-social/api/models/message.js",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/middlewares/authenticated.js",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/services/jwt.js",
 		"/Users/juniorportom/projects/node/curso-mean-social/1. gitignore",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/models/publication.js",
-		"/Users/juniorportom/projects/node/curso-mean-social/api/models/user.js",
-		"/Users/juniorportom/projects/node/curso-mean-social/api/Apuntes curso red socual"
+		"/Users/juniorportom/projects/node/curso-mean-social/api/models/user.js"
 	],
 	"find":
 	{
@@ -276,52 +333,24 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "api/Apuntes curso red socual",
+					"file": "api/app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1122,
+						"buffer_size": 1005,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1122,
-								1122
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "api/controllers/publication.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 14,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								14,
-								14
+								836,
+								836
 							]
 						],
 						"settings":
@@ -336,25 +365,25 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "/Users/juniorportom/Library/Application Support/Sublime Text 3/Packages/User/JavaScript.sublime-build",
+					"buffer": 1,
+					"file": "api/Apuntes curso red socual",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 56,
+						"buffer_size": 1365,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								56,
-								56
+								1365,
+								1365
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -397,11 +426,15 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 102.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
 	},
-	"pinned_build_system": "",
+	"pinned_build_system": "Packages/User/JavaScript.sublime-build",
 	"project": "curso-mean-social.sublime-project",
 	"replace":
 	{
