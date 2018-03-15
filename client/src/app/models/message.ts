@@ -7,4 +7,4 @@ export class Message{
 		public emitter: string,
 		public receiver: string
 		){}
-}∫
+}

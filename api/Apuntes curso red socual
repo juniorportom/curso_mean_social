@@ -1,3 +1,6 @@
+----- IPConfig
+ifconfig |grep "inet" |grep -v 127.0.0.1
+
 ----- Instalar plugins en sublime
 se usa las teclas control + shit + P,  buscamos el plugin y le damos instalar (ej: typescript)
 
