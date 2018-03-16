@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
 	constructor(private _route: ActivatedRoute, private _router: Router, private _userService: UserService){
 		this.title = 'Identificate';
-		this.user = new User("", "", "", "", "", "", "USER_ROLE", "");
+		this.user = new User("", "", "", "", "", "", "USER_ROLE", "", "");
 	}
 
 	ngOnInit(){
@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
 				}else{
 					this.status = 'success';
 					// Persistir datos del usuario
+					localStorage.setItem('identity', JSON.stringify(this.identity));
 
 					// Conseguir el token
 					this.getToken();
@@ -58,6 +59,7 @@ export class LoginComponent implements OnInit {
 				}else{
 					this.status = 'success';
 					//Persistir token del usuario
+					localStorage.setItem('token', this.token);
 
 					// Conseguir los contadores del usuario
 
