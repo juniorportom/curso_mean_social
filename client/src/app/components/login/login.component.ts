@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
 	constructor(private _route: ActivatedRoute, private _router: Router, private _userService: UserService){
 		this.title = 'Identificate';
-		this.user = new User("", "", "", "", "", "", "USER_ROLE", "", "");
+		this.user = new User("", "", "", "", "", "", "USER_ROLE", "");
 	}
 
 	ngOnInit(){
@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
 				if(!this.identity || !this.identity._id){
 					this.status = 'fail';
 				}else{
-					this.status = 'success';
 					// Persistir datos del usuario
 					localStorage.setItem('identity', JSON.stringify(this.identity));
 
@@ -44,7 +43,7 @@ export class LoginComponent implements OnInit {
 				}				
 			},
 			error =>{
-				console.log(error);
+				console.log(<any>error);
 				this.status = 'fail';
 			}
 		);
@@ -57,20 +56,31 @@ export class LoginComponent implements OnInit {
 				if(this.token.length <= 0){
 					this.status = 'fail';
 				}else{
-					this.status = 'success';
 					//Persistir token del usuario
 					localStorage.setItem('token', this.token);
 
 					// Conseguir los contadores del usuario
-
-
+					this.getCounters();					
 				}
 			},
 			error=>{
-				console.log(error);
+				console.log(<any>error);
 				this.status = 'fail';
-
 			}
 		);
 	}
+
+	getCounters(){
+		this._userService.getCounters().subscribe(
+			response=>{
+				localStorage.setItem('stats', JSON.stringify(response));
+				this.status = 'success';
+				this._router.navigate(['/']);
+			},
+			error=>{
+				console.log(error);
+			}
+		);
+	}
+
 }

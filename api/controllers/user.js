@@ -309,6 +309,7 @@ async function followUserIds(userId){
 function updateUser(req, res){
 	var userId = req.params.id;
 	var update = req.body;
+	var userIsset = false;
 
 	// Borrar propiedad password
 	delete update.password;
@@ -317,12 +318,27 @@ function updateUser(req, res){
 			message: 'No tienes permiso para actualizar los datos del usuario'
 		});
 
-	User.findByIdAndUpdate(userId, update, {new: true} ,(error, userUpdated)=>{
-		if(error) return res.status(500).send({message: 'Error en la petición'});
+	User.find({
+			$or: [
+				{email: update.email.toLowerCase()},
+				{nick: update.nick.toLowerCase()}
+			]
+		}).exec((error, users)=>{
+			users.forEach((user)=>{
+				if(user && user._id != userId)  userIsset = true;
+			});
 
-		if(!userUpdated) return res.status(404).sebd({message: 'No se ha podido actualizar el usuario'});
+			if(userIsset)
+				return res.status(500).send({message: 'Los datos ya estan en uso'});
+			
 
-		return res.status(200).send({user:userUpdated});
+			User.findByIdAndUpdate(userId, update, {new: true} ,(error, userUpdated)=>{
+			if(error) return res.status(500).send({message: 'Error en la petición'});
+
+			if(!userUpdated) return res.status(404).sebd({message: 'No se ha podido actualizar el usuario'});
+
+			return res.status(200).send({user:userUpdated});
+		});
 	});
 }
 

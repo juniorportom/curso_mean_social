@@ -13,6 +13,15 @@
 	background: #cc1717;
 }
 
+.pointer{
+	cursor: pointer;
+}
+
+.image-cuadro{
+	width: 100px;
+	height: 100px;
+}
+
 /*Cabecera*/
 .navigation{
 	padding: 0px !important;
@@ -30,4 +39,37 @@
 
 .navigation .navbar a:hover{
 	background: #cc1717 !important;
+}
+
+.navigation .navbar .dropdown-menu *{
+	color: black !important;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus{
+	background: #cc1717 !important;
+} 
+
+.navigation .navbar .dropdown-menu a:hover{
+	background: #eee !important;
+}
+
+.navigation .avatar{
+	width: 45px;
+	height: 45px;
+	border-radius: 100px;
+	overflow: hidden;
+	margin-top: 3px;
+	margin-right: 2px;
+}
+
+.navigation .avatar img{
+	height: auto;
+	width: 45px;
+
+}
+
+.jumbotron{
+	padding: 25px;
+	border-radius: 5px;
+	text-align: center;
 }
