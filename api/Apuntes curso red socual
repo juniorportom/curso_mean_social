@@ -16,6 +16,10 @@ PATH=/Users/juniorportom/mongodb/bin:$PATH
 
 mongod
 
+// Configurar proxy
+npm config set proxy http://login:pass@proxy:port
+
+
 npm init            //Empezar un royecto nodejs
 
 npm install express --all		//Permite levantar un servidor, y el menejo de rutas y comandos http
