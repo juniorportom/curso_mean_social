@@ -3,12 +3,13 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Publication } from '../../models/publication';
 import { GLOBAL } from '../../services/global';
 import { UserService } from '../../services/user.service';
+import { PublicationService } from '../../services/publication.service';
 
 
 @Component({
 	selector: 'timeline',
 	templateUrl: './timeline.component.html',
-	providers: [UserService]
+	providers: [UserService, PublicationService]
 })
 
 export class TimelineComponent implements OnInit {
@@ -17,15 +18,49 @@ export class TimelineComponent implements OnInit {
 	public url:string;
 	public identity;
 	public token;
+	public status: string;
+	public page: number;
+	public publications: Publication[];
+	public total:number;
+	public pages:number;
 
-	constructor(private _route:ActivatedRoute, private _router: Router, private _userService: UserService) {
+	constructor(private _route:ActivatedRoute, private _router: Router, private _userService: UserService,
+		private _publicationService: PublicationService) {
 		this.title = 'Timeline';
 		this.url = GLOBAL.url;
 		this.identity = this._userService.getIdentity();
 		this.token = this._userService.getToken();
+		this.page = 1;
 	}
 
 	ngOnInit(){
 		console.log('Timeline component cargado');
+		this.getPublication(this.page);
+	}
+
+	getPublication(page){
+		this._publicationService.getPublications(this.token, page).subscribe(
+			response =>{
+				console.log(response);
+				if(response.publications){
+					this.publications = response.publications;
+					this.total = response.totalItems;
+					this.pages = response.pages;
+					if(page > this.pages){
+						this._router.navigate(['/home']);
+					}
+					this.status = 'success';
+				}else{
+					this.status = 'fail';
+				}
+			},
+			error=>{
+				var errorMessage = <any>error;
+				console.log(errorMessage);
+				if(errorMessage != null){
+					this.status = 'fail';
+				}
+			}
+		);
 	}
 }
