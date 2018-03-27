@@ -13,7 +13,7 @@ var multipart = require('connect-multiparty');
 var mdUpload = multipart({uploadDir: './uploads/publications'});
 
 api.get('/prueba-publication', mdAuth.ensureAuth, PublicationController.prueba);
-api.post('/save-publication', mdAuth.ensureAuth, PublicationController.savePublication);
+api.post('/publication', mdAuth.ensureAuth, PublicationController.savePublication);
 api.get('/publications/:page?', mdAuth.ensureAuth, PublicationController.getPublications);
 api.get('/publication/:id', mdAuth.ensureAuth, PublicationController.getPublication);
 api.delete('/publication/:id', mdAuth.ensureAuth, PublicationController.deletePublication);

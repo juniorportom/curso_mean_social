@@ -30,7 +30,7 @@
 			<span *ngIf="!email.value && email.touched">El correo electronico es obligatorio</span>
 		</p>
 
-		<div *ngIf="user.image" >
+		<div *ngIf="user.image" class="user-image-for-edit">
 			<img src="{{url+'get-image-user/'+user.image}}" />
 		</div>
 

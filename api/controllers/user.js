@@ -184,8 +184,8 @@ function getUsers(req, res){
 		followUserIds(identityUserId).then((value)=>{
 			return res.status(200).send({
 				users,
-				userFollowing: value.following,
-				userFollowMe: value.followed,
+				usersFollowing: value.following,
+				usersFollowMe: value.followed,
 				total,
 				pages: Math.ceil(total/itemsPerPage)
 			});
@@ -223,7 +223,8 @@ async function followThisUser(identity_user_id, user_id){
 
 /*async function followUserIds(userId){
 	try{
-		var following = await Follow.find({'user':userId}).select({'_id':0, '__v':0, 'user': 0}).exec().then((follows)=>{
+		var following = await Follow.find({'user':userId}).select({'_id':0, '__v':0, 'user': 0}).exec()
+		.then((follows)=>{
 			var followsClean = [];
 			console.log(follows);
 			if(follows){
@@ -237,7 +238,8 @@ async function followThisUser(identity_user_id, user_id){
                 return handleError(err);
             });
 
-		var followed = await Follow.find({'followed':userId}).select({'_id':0, '__v':0, 'followed': 0}).exec().then((follows)=>{
+		var followed = await Follow.find({'followed':userId}).select({'_id':0, '__v':0, 'followed': 0})
+		.exec().then((follows)=>{
 			var followsClean = [];
 			console.log(follows);
 			if(follows){
@@ -264,14 +266,16 @@ async function followThisUser(identity_user_id, user_id){
 
 async function followUserIds(userId){
 	try{
-		var following = await Follow.find({'user':userId}).select({'_id':0, '__v':0, 'user': 0}).exec().then((follows)=>{			
+		var following = await Follow.find({'user':userId}).select({'_id':0, '__v':0, 'user': 0}).exec()
+		.then((follows)=>{			
 			return follows;
 		})
 		.catch((err)=>{
                 return handleError(err);
             });
 
-		var followed = await Follow.find({'followed':userId}).select({'_id':0, '__v':0, 'followed': 0}).exec().then((follows)=>{			
+		var followed = await Follow.find({'followed':userId}).select({'_id':0, '__v':0, 'followed': 0})
+		.exec().then((follows)=>{			
 			return follows;
 		})
 		.catch((err)=>{
@@ -358,10 +362,12 @@ function uploadImage(req, res){
 
 		if(userId != req.user.sub){
 			
-			return removeFilesOfUploads(res, filePath, 'No tienes permiso para actualizar los datos del usuario', 500);			
+			return removeFilesOfUploads(res, filePath, 
+				'No tienes permiso para actualizar los datos del usuario', 500);			
 		}
 
-		if(ext.toLowerCase() == 'png' || ext.toLowerCase() == 'jpg' || ext.toLowerCase() == 'gif' || ext.toLowerCase() == 'jpeg'){
+		if(ext.toLowerCase() == 'png' || ext.toLowerCase() == 'jpg' || ext.toLowerCase() == 'gif' || ext
+			.toLowerCase() == 'jpeg'){
 			User.findByIdAndUpdate(userId, {image: fileName}, {new: true}, (error, userUpdate)=>{
 				if(error) 
 					return removeFilesOfUploads(res, filePath, 'Error en la petición', 500);
