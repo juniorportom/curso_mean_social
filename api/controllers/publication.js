@@ -63,7 +63,8 @@ function getPublications(req, res){
 				publications,
 				totalItems: total,
 				page: page,
-				pages: Math.ceil(total/itemsPerPage)
+				pages: Math.ceil(total/itemsPerPage),
+				itemsPerPage: itemsPerPage
 			});
 		});
 	});

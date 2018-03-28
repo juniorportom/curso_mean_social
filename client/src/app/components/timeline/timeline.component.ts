@@ -23,6 +23,8 @@ export class TimelineComponent implements OnInit {
 	public publications: Publication[];
 	public total:number;
 	public pages:number;
+	public itemsPerPage:number;
+	public noMore:boolean;
 
 	constructor(private _route:ActivatedRoute, private _router: Router, private _userService: UserService,
 		private _publicationService: PublicationService) {
@@ -31,6 +33,7 @@ export class TimelineComponent implements OnInit {
 		this.identity = this._userService.getIdentity();
 		this.token = this._userService.getToken();
 		this.page = 1;
+		this.noMore = false;
 	}
 
 	ngOnInit(){
@@ -38,14 +41,22 @@ export class TimelineComponent implements OnInit {
 		this.getPublication(this.page);
 	}
 
-	getPublication(page){
+	getPublication(page, adding = false){
 		this._publicationService.getPublications(this.token, page).subscribe(
 			response =>{
 				console.log(response);
-				if(response.publications){
-					this.publications = response.publications;
+				if(response.publications){					
 					this.total = response.totalItems;
 					this.pages = response.pages;
+					this.itemsPerPage = response.itemsPerPage;
+					if(!adding){
+						this.publications = response.publications;
+					}else{
+						var arrayA = this.publications;
+						var arrayB = response.publications;
+						this.publications = arrayA.concat(arrayB);
+					}
+
 					if(page > this.pages){
 						this._router.navigate(['/home']);
 					}
@@ -63,4 +74,17 @@ export class TimelineComponent implements OnInit {
 			}
 		);
 	}
+
+	viewMore(){
+		if(this.publications.length == this.total){
+			this.noMore = true;
+		}else{
+			this.page += 1;
+		}
+		this.getPublication(this.page, true);
+	}
 }
+
+
+
+
