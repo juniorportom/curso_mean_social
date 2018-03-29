@@ -203,8 +203,15 @@
 	min-height: 500px;
 }
 
+#publications .date{
+	color: gray;
+}
 
+/*Perfiles*/
 
+#data-profile{
+	min-height: 500px;
+}
 
 
 

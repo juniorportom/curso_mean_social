@@ -54,7 +54,10 @@ function getPublications(req, res){
 			followsClean.push(follow.followed);
 		})
 
-		Publication.find({user: {'$in': followsClean}}).sort('create_at').populate('user').paginate(page, itemsPerPage, (error, publications, total)=>{
+		followsClean.push(req.user.sub);
+
+		Publication.find({user: {'$in': followsClean}}).sort([['created_at',-1]]).populate('user')
+									.paginate(page, itemsPerPage, (error, publications, total)=>{
 			if(error) return res.status(500).send({message: 'Error obteniendo las publicaciones'});
 
 			if(!publications) return res.status(404).send({message: 'No hay publicaciones'});

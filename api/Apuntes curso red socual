@@ -12,6 +12,15 @@ se usa las teclas control + shit + P,  buscamos el plugin y le damos instalar (e
 
 Comandos mongo
 
+ordenar en mongo 
+Room.find({}).sort('-date').exec(function(err, docs) { ... });
+Room.find({}).sort({date: -1}).exec(function(err, docs) { ... });
+Room.find({}).sort({date: 'desc'}).exec(function(err, docs) { ... });
+Room.find({}).sort({date: 'descending'}).exec(function(err, docs) { ... });
+Room.find({}).sort([['date', -1]]).exec(function(err, docs) { ... });
+Room.find({}, null, {sort: '-date'}, function(err, docs) { ... });
+Room.find({}, null, {sort: {date: -1}}, function(err, docs) { ... });
+
 PATH=/Users/juniorportom/mongodb/bin:$PATH
 
 mongod
@@ -91,6 +100,6 @@ npm update
 
 npm install bootstrap --save
 
-
+npm install --save angular2-moment
 
 

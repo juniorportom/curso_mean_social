@@ -1,34 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params} from '@angular/router';
 import { Publication } from '../../models/publication';
 import { GLOBAL } from '../../services/global';
 import { UserService } from '../../services/user.service';
 import { PublicationService } from '../../services/publication.service';
 
-
 @Component({
-	selector: 'timeline',
-	templateUrl: './timeline.component.html',
+	selector: 'publications',
+	templateUrl: './publications.component.html',
 	providers: [UserService, PublicationService]
 })
 
-export class TimelineComponent implements OnInit {
-	
-	public title:string;
-	public url:string;
+export class PublicationsComponent implements OnInit {
+	public title: string;
 	public identity;
 	public token;
+	public url:string;
 	public status: string;
-	public page: number;
-	public publications: Publication[];
+	public page:number;
 	public total:number;
 	public pages:number;
 	public itemsPerPage:number;
+	public publications: Publication[];
 	public noMore:boolean;
 
-	constructor(private _route:ActivatedRoute, private _router: Router, private _userService: UserService,
-		private _publicationService: PublicationService) {
-		this.title = 'Timeline';
+	constructor(private _route: ActivatedRoute, private _router: Router, public _userService: UserService,
+			private _publicationService: PublicationService){
+
+		this.title = 'Publicaciones'
 		this.url = GLOBAL.url;
 		this.identity = this._userService.getIdentity();
 		this.token = this._userService.getToken();
@@ -37,11 +36,11 @@ export class TimelineComponent implements OnInit {
 	}
 
 	ngOnInit(){
-		console.log('Timeline component cargado');
-		this.getPublications(this.page);
+		console.log('Publications component cargado correctamente');
+		this.getPublication(this.page);
 	}
 
-	getPublications(page, adding = false){
+	getPublication(page, adding = false){
 		this._publicationService.getPublications(this.token, page).subscribe(
 			response =>{
 				console.log(response);
@@ -81,17 +80,9 @@ export class TimelineComponent implements OnInit {
 			this.noMore = true;
 		}else{
 			this.page += 1;
-			this.getPublications(this.page, true);
-		}		
+			this.getPublication(this.page, true);
+		}
+		
 	}
 
-	refresh(event){
-		//console.log(event);
-		this.getPublications(1);
-
-	}
 }
-
-
-
-

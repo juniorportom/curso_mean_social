@@ -1,4 +1,5 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output} from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { GLOBAL } from '../../services/global';
 import { Publication } from '../../models/publication';
@@ -19,7 +20,8 @@ export class SidebarComponent implements OnInit {
 	public url:string;
 	public publication: Publication;
 
-	constructor(private _userService : UserService, private _publicationService: PublicationService){
+	constructor(private _route: ActivatedRoute, private _router: Router, private _userService : UserService, 
+			private _publicationService: PublicationService){
 		this.identity = this._userService.getIdentity();
 		this.token = this._userService.getToken();
 		this.stats = this._userService.getStats();
@@ -36,8 +38,19 @@ export class SidebarComponent implements OnInit {
 			response =>{
 				if(response.publication){
 					//this.publication = response.publication;
-					this.status = 'success';
-					form.reset();
+					this._userService.getCounters().subscribe(
+						response=>{
+							localStorage.setItem('stats', JSON.stringify(response.value));
+							this.stats = response.value;
+							this.status = 'success';
+							form.reset();
+							this._router.navigate(['/timeline']);
+						},
+						error=>{
+							console.log(error);
+							this.status = 'fail';
+						}
+					);					
 				}
 				else
 				{
@@ -53,5 +66,12 @@ export class SidebarComponent implements OnInit {
 			} 
 		);
 
+	}
+
+	//Output
+	@Output() sended = new EventEmitter();
+	sendPublication(event){
+		//console.log(event);
+		this.sended.emit({send: 'true'});
 	}
 }
