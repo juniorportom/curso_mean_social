@@ -6,14 +6,14 @@
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<div class="image-user pull-left">
-						<a href="#">
+						<a [routerLink]="['/perfil', user._id]" [routerLinkActive]="['active']">
 							<img src="{{url + 'get-image-user/' + user.image}}" *ngIf="user.image">
 							<img src="assets/default-img.jpg" *ngIf="!user.image" class="avatar-default">
 						</a>
 					</div>
 					<div class="user-name pull-left">
 						<p class="name-surname">
-							<a href="#">
+							<a [routerLink]="['/perfil', user._id]" [routerLinkActive]="['active']">
 								{{user.name + ' ' + user.surname}}
 							</a>	
 						</p>

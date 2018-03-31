@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { Publication } from '../../models/publication';
 import { GLOBAL } from '../../services/global';
@@ -23,6 +23,7 @@ export class PublicationsComponent implements OnInit {
 	public itemsPerPage:number;
 	public publications: Publication[];
 	public noMore:boolean;
+	@Input() user: string;
 
 	constructor(private _route: ActivatedRoute, private _router: Router, public _userService: UserService,
 			private _publicationService: PublicationService){
@@ -37,11 +38,11 @@ export class PublicationsComponent implements OnInit {
 
 	ngOnInit(){
 		console.log('Publications component cargado correctamente');
-		this.getPublication(this.page);
+		this.getPublication(this.user, this.page);
 	}
 
-	getPublication(page, adding = false){
-		this._publicationService.getPublications(this.token, page).subscribe(
+	getPublication(user, page, adding = false){
+		this._publicationService.getPublicationsUser(this.token, user, page).subscribe(
 			response =>{
 				console.log(response);
 				if(response.publications){					
@@ -55,10 +56,6 @@ export class PublicationsComponent implements OnInit {
 						var arrayB = response.publications;
 						this.publications = arrayA.concat(arrayB);
 						$("html, body").animate({scrollTop: $('body').prop("scrollHeight")}, 500);
-					}
-
-					if(page > this.pages){
-						this._router.navigate(['/home']);
 					}
 					this.status = 'success';
 				}else{
@@ -80,7 +77,7 @@ export class PublicationsComponent implements OnInit {
 			this.noMore = true;
 		}else{
 			this.page += 1;
-			this.getPublication(this.page, true);
+			this.getPublication(this.user, this.page, true);
 		}
 		
 	}
