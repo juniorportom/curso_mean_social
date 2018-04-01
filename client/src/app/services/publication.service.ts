@@ -12,7 +12,7 @@ export class PublicationService{
 		this.url = GLOBAL.url;
 	}
 
-	addApplication(token, publication): Observable<any>{
+	addPublication(token, publication): Observable<any>{
 		let params = JSON.stringify(publication);
 		let headers = new HttpHeaders().set('Content-Type', 'application/json')
 										.set('Authorization', token);

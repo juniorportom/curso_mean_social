@@ -25,6 +25,7 @@ export class TimelineComponent implements OnInit {
 	public pages:number;
 	public itemsPerPage:number;
 	public noMore:boolean;
+	public showImage;
 
 	constructor(private _route:ActivatedRoute, private _router: Router, private _userService: UserService,
 		private _publicationService: PublicationService) {
@@ -38,7 +39,7 @@ export class TimelineComponent implements OnInit {
 
 	ngOnInit(){
 		console.log('Timeline component cargado');
-		this.getPublications(this.page);
+		this.refresh(1);
 	}
 
 	getPublications(page, adding = false){
@@ -85,10 +86,29 @@ export class TimelineComponent implements OnInit {
 		}		
 	}
 
-	refresh(event){
+	refresh(event = null){
 		//console.log(event);
 		this.getPublications(1);
 
+	}
+
+	showThisImage(id){
+		this.showImage = id;
+	}
+
+	hideThisImage(id){
+		this.showImage = 0;
+	}
+
+	deletePublication(id){
+		this._publicationService.deletePublication(this.token, id).subscribe(
+			response=>{
+				this.refresh();
+			},
+			error=>{
+				console.log(<any>error);
+			}
+		);
 	}
 }
 

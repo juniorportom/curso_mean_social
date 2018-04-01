@@ -4,12 +4,13 @@ import { UserService } from '../../services/user.service';
 import { GLOBAL } from '../../services/global';
 import { Publication } from '../../models/publication';
 import { PublicationService } from '../../services/publication.service';
+import { UploadService } from '../../services/upload.service';
 
 
 @Component({
 	selector: 'sidebar',
 	templateUrl: './sidebar.component.html',
-	providers: [UserService, PublicationService]
+	providers: [UserService, PublicationService, UploadService]
 })
 
 export class SidebarComponent implements OnInit {
@@ -19,9 +20,10 @@ export class SidebarComponent implements OnInit {
 	public status:string;
 	public url:string;
 	public publication: Publication;
+	public filesToUpload: Array<File>;
 
 	constructor(private _route: ActivatedRoute, private _router: Router, private _userService : UserService, 
-			private _publicationService: PublicationService){
+			private _publicationService: PublicationService, private _uploadService: UploadService){
 		this.identity = this._userService.getIdentity();
 		this.token = this._userService.getToken();
 		this.stats = this._userService.getStats();
@@ -34,17 +36,32 @@ export class SidebarComponent implements OnInit {
 	}
 
 	onSubmit(form){
-		this._publicationService.addApplication(this.token, this.publication).subscribe(
-			response =>{
-				if(response.publication){
+		this._publicationService.addPublication(this.token, this.publication).subscribe(
+			responsePub =>{
+				if(responsePub.publication){
 					//this.publication = response.publication;
 					this._userService.getCounters().subscribe(
-						response=>{
-							localStorage.setItem('stats', JSON.stringify(response.value));
-							this.stats = response.value;
-							this.status = 'success';
-							form.reset();
-							this._router.navigate(['/timeline']);
+						response=>{							
+							//Subir imagen
+							console.log(responsePub);
+							if(this.filesToUpload && this.filesToUpload.length){
+								this._uploadService.makeFileRequest(this.url + 'upload-image-pub/' +
+								responsePub.publication._id, [], this.filesToUpload, this.token, 'image')
+										.then((result:any)=>{
+									this.publication.file = result.image;
+									localStorage.setItem('stats', JSON.stringify(response.value));
+									this.stats = response.value;
+									this.status = 'success';
+									form.reset();
+									this._router.navigate(['/timeline']);
+							});
+							}else{
+								localStorage.setItem('stats', JSON.stringify(response.value));
+								this.stats = response.value;
+								this.status = 'success';
+								form.reset();
+								this._router.navigate(['/timeline']);
+							}
 						},
 						error=>{
 							console.log(error);
@@ -66,6 +83,10 @@ export class SidebarComponent implements OnInit {
 			} 
 		);
 
+	}
+
+	fileChangeEvent(fileInput: any){
+		this.filesToUpload = <Array<File>>fileInput.target.files;
 	}
 
 	//Output
