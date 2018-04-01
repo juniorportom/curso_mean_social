@@ -21,6 +21,7 @@ export class SidebarComponent implements OnInit {
 	public url:string;
 	public publication: Publication;
 	public filesToUpload: Array<File>;
+	@Output() sended = new EventEmitter();
 
 	constructor(private _route: ActivatedRoute, private _router: Router, private _userService : UserService, 
 			private _publicationService: PublicationService, private _uploadService: UploadService){
@@ -35,7 +36,7 @@ export class SidebarComponent implements OnInit {
 		console.log('Sidebar component cargado');
 	}
 
-	onSubmit(form){
+	onSubmit(form, event){
 		this._publicationService.addPublication(this.token, this.publication).subscribe(
 			responsePub =>{
 				if(responsePub.publication){
@@ -54,6 +55,7 @@ export class SidebarComponent implements OnInit {
 									this.status = 'success';
 									form.reset();
 									this._router.navigate(['/timeline']);
+									this.sended.emit({send: 'true'});
 							});
 							}else{
 								localStorage.setItem('stats', JSON.stringify(response.value));
@@ -61,6 +63,7 @@ export class SidebarComponent implements OnInit {
 								this.status = 'success';
 								form.reset();
 								this._router.navigate(['/timeline']);
+								this.sended.emit({send: 'true'});
 							}
 						},
 						error=>{
@@ -90,7 +93,7 @@ export class SidebarComponent implements OnInit {
 	}
 
 	//Output
-	@Output() sended = new EventEmitter();
+	
 	sendPublication(event){
 		//console.log(event);
 		this.sended.emit({send: 'true'});
