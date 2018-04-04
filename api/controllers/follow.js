@@ -63,11 +63,15 @@ function getFollowingUsers(req, res){
 
 		if(!follows) return res.status(404).send({message: 'No estas siguiendo a ningun usuario'});
 
-		return res.status(200).send({
-			total: total,
-			pages: Math.ceil(total/itemsPerPage),
-			follows
-		});
+		followUserIds(userId).then((value)=>{
+			return res.status(200).send({
+				total: total,
+				pages: Math.ceil(total/itemsPerPage),
+				follows,
+				usersFollowing: value.following,
+				usersFollowMe: value.followed
+			});
+		});		
 	})
 }
 
@@ -119,6 +123,50 @@ function getMyFollows(req, res){
 
 		return res.status(200).send({ follows });
 	})
+}
+
+async function followUserIds(userId){
+	try{
+		var following = await Follow.find({'user':userId}).select({'_id':0, '__v':0, 'user': 0}).exec()
+		.then((follows)=>{			
+			return follows;
+		})
+		.catch((err)=>{
+                return handleError(err);
+            });
+
+		var followed = await Follow.find({'followed':userId}).select({'_id':0, '__v':0, 'followed': 0})
+		.exec().then((follows)=>{			
+			return follows;
+		})
+		.catch((err)=>{
+                return handleError(err);
+            });
+
+		var followingsClean = [];
+
+		if(following){
+			following.forEach((follow)=>{
+				followingsClean.push(follow.followed);			
+			});
+		}
+
+		var followedsClean = [];
+
+		if(followed){
+			console.log(followed);
+			followed.forEach((follow)=>{
+				followedsClean.push(follow.user);			
+			});
+		}
+
+		return {
+			following: followingsClean,
+			followed: followedsClean
+		}
+	}catch(e){
+		console.log(e);
+	}	
 }
 
 

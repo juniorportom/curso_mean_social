@@ -305,8 +305,7 @@ async function followUserIds(userId){
 		}
 	}catch(e){
 		console.log(e);
-	}
-	
+	}	
 }
 
 // Edición de datos de usuario

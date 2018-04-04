@@ -74,6 +74,9 @@
 }
 
 /*Listado de Gente*/
+.people{
+	min-height: 500px;
+}
 
 .item-user .image-user,
 .item-publication .image-user{

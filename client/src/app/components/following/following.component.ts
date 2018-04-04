@@ -1,5 +1,5 @@
-import { Component, OnInit} from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params} from '@angular/router';
 import { User } from '../../models/user';
 import { Follow } from '../../models/follow';
 import { UserService } from '../../services/user.service';
@@ -7,44 +7,49 @@ import { FollowService } from '../../services/follow.service';
 import { GLOBAL } from '../../services/global';
 
 @Component({
-	selector: 'users',
-	templateUrl: './users.component.html',
+	selector: 'following',
+	templateUrl: './following.component.html',
 	providers: [UserService, FollowService]
 })
 
-export class UsersComponent implements OnInit{
-	public title:string;
+export class FollowingComponent implements OnInit{
+
+	public title: string;
 	public identity;
 	public token;
+	public url:string;
 	public page:number;
-	public prevPage:number;
 	public nextPage:number;
-	public status:string;
-	public total: number;
-	public pages: number;
+	public prevPage:number;
+	public total:number;
+	public pages:number;
 	public users: User[];
-	public url:string
 	public follows;
+	public status:string;
 	public followUserOver;
+	public following;
+	public userPageId;
+	public user: User;
 
-	constructor(private _route: ActivatedRoute, private _router: Router, private _userService:UserService,
+
+	constructor(private _route:ActivatedRoute, private _router: Router, private _userService: UserService,
 		private _followService: FollowService){
-		this.title = 'Gente';	
-		this.identity = this._userService.getIdentity();
-		this.token = this._userService.getToken();	
-		this.prevPage = 1;
-		this.nextPage = 1;
-		this.page = 1;
+		this.title = 'Usuarios seguidos por';
 		this.url = GLOBAL.url;
+		this.identity = this._userService.getIdentity();
+		this.token = this._userService.getToken();
+
 	}
 
 	ngOnInit(){
-		console.log('Users component ha sido cargado');
+		console.log('Following component cargado correctamente');
 		this.actualPage();
 	}
 
 	actualPage(){
 		this._route.params.subscribe(params =>{
+			let userId = params['id']; 
+			this.userPageId = userId;
 			let page = +params['page'];
 
 			if(!page){
@@ -60,26 +65,25 @@ export class UsersComponent implements OnInit{
 			}
 
 			//Devolver listado de usuarios
-			this.getUsers(this.page);
+			this.getUser(userId, this.page);
 		});
 	}
 
-	getUsers(page){
-		this._userService.getUsers(page).subscribe(
+	getFollows(userId, page){
+		this._followService.getFollowing(this.token, userId, page).subscribe(
 			response => {
-				if(!response.users){
+				if(!response.follows){
 					this.status = 'fail';
 				}else{
 					console.log(response);
 					this.total = +response.total;
 					this.pages = +response.pages;
-					this.users = response.users;
+					this.following = response.follows;
 					this.follows = response.usersFollowing;
 					if(page > this.pages){
 						this._router.navigate(['/gente', 1]);
 					}
 				}
-
 			},
 			error=>{
 				var errorMessage = <any> error;
@@ -87,6 +91,22 @@ export class UsersComponent implements OnInit{
 				if(errorMessage != null){
 					this.status = 'fail';
 				}
+			}
+		);
+	}
+
+	getUser(userId, page){
+		this._userService.getUser(userId).subscribe(
+			response=>{
+				if(response.user){
+					this.user = response.user;
+					this.getFollows(userId, page);
+				}else{
+					this._router.navigate(['/home']);
+				}				
+			},
+			error=>{
+				console.log(<any>error);
 			}
 		);
 	}
@@ -138,5 +158,4 @@ export class UsersComponent implements OnInit{
 			}
 		);
 	}
-
 }
