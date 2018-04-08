@@ -46,7 +46,9 @@ function getReceivedMessages(req, res){
 
 	var itemsPerPage = 4;
 
-	Message.find({receiver: userId}).populate('emitter', '_id name surname nick image ').paginate(page, itemsPerPage, (error, messages, total)=> {
+	Message.find({receiver: userId}).populate('emitter', '_id name surname nick image ').sort('-created_at')
+											.paginate(page, itemsPerPage, 
+			(error, messages, total)=> {
 		if(error) return res.status(500).send({message: 'Error en la petición'});
 
 		if(!messages) return res.status(404).send({message: 'No hay nensajes'});
@@ -70,7 +72,9 @@ function getEmittedMessages(req, res){
 
 	var itemsPerPage = 4;
 
-	Message.find({emitter: userId}).populate('emitter receiver', '_id name surname nick image ').paginate(page, itemsPerPage, (error, messages, total)=> {
+	Message.find({emitter: userId}).populate('emitter receiver', '_id name surname nick image ').sort('-created_at')
+										.paginate(page, itemsPerPage, 
+			(error, messages, total)=> {
 		if(error) return res.status(500).send({message: 'Error en la petición'});
 
 		if(!messages) return res.status(404).send({message: 'No hay nensajes'});

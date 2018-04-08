@@ -6,6 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { routing, appRoutingProviders} from './app.routing';
 import { MomentModule } from 'angular2-moment';
 
+//Modulo custom
+import { MessagesModule } from './messages/messages.module';
+
 //Cargar comonentes
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -18,6 +21,7 @@ import { TimelineComponent } from './components/timeline/timeline.component';
 import { PublicationsComponent } from './components/publications/publications.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { FollowingComponent } from './components/following/following.component';
+import { FollowedComponent } from './components/followed/followed.component';
 
 
 @NgModule({
@@ -32,14 +36,16 @@ import { FollowingComponent } from './components/following/following.component';
     TimelineComponent,
     PublicationsComponent,
     ProfileComponent,
-    FollowingComponent
+    FollowingComponent,
+    FollowedComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     routing,
     HttpClientModule,
-    MomentModule
+    MomentModule,
+    MessagesModule
   ],
   providers: [
     appRoutingProviders
