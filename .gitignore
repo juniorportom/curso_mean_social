@@ -1,3 +1,5 @@
+#Archivo de subida
+api/uploads
 # Logs
 logs
 *.log

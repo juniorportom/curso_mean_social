@@ -23,6 +23,7 @@ export class PublicationsComponent implements OnInit {
 	public itemsPerPage:number;
 	public publications: Publication[];
 	public noMore:boolean;
+	public loading:boolean;
 	@Input() user: string;
 
 	constructor(private _route: ActivatedRoute, private _router: Router, public _userService: UserService,
@@ -34,6 +35,7 @@ export class PublicationsComponent implements OnInit {
 		this.token = this._userService.getToken();
 		this.page = 1;
 		this.noMore = false;
+		this.loading = true;
 	}
 
 	ngOnInit(){
@@ -58,6 +60,8 @@ export class PublicationsComponent implements OnInit {
 						$("html, body").animate({scrollTop: $('body').prop("scrollHeight")}, 500);
 					}
 					this.status = 'success';
+					//$("#carga1").slideUp(1000).delay(5000).slideDown(1000);
+					this.loading = false;
 				}else{
 					this.status = 'fail';
 				}
@@ -75,11 +79,10 @@ export class PublicationsComponent implements OnInit {
 	viewMore(){
 		if(this.publications.length == this.total){
 			this.noMore = true;
+			this.loading = true;
 		}else{
 			this.page += 1;
 			this.getPublication(this.user, this.page, true);
-		}
-		
+		}		
 	}
-
 }
