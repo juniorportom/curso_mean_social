@@ -4,12 +4,88 @@
 		"selected_items":
 		[
 			[
-				"mess",
-				"MessageController"
+				"tex",
+				"text-align"
+			],
+			[
+				"user",
+				"UserGuard\talias"
+			],
+			[
+				"use",
+				"user.guard\tscript"
+			],
+			[
+				"get",
+				"getIdentity\tmethod"
+			],
+			[
+				"import",
+				"import\tkeyword"
+			],
+			[
+				"to",
+				"total\tproperty"
+			],
+			[
+				"pa",
+				"pages\tproperty"
+			],
+			[
+				"co",
+				"console\tvar"
+			],
+			[
+				"User",
+				"UserService\talias"
+			],
+			[
+				"foll",
+				"FollowService\talias"
+			],
+			[
+				"follo",
+				"follow"
+			],
+			[
+				"op",
+				"option\tTag"
+			],
+			[
+				"form",
+				"form-control"
+			],
+			[
+				"in",
+				"input\tTag"
+			],
+			[
+				"Follo",
+				"FollowService\talias"
 			],
 			[
 				"messa",
-				"messageUpdated"
+				"MessageService\talias"
+			],
+			[
+				"pro",
+				"providers\tproperty"
+			],
+			[
+				"c",
+				"components\tdirectory"
+			],
+			[
+				"impor",
+				"import\tkeyword"
+			],
+			[
+				"Obe",
+				"Observable\talias"
+			],
+			[
+				"mess",
+				"MessageController"
 			],
 			[
 				"error",
@@ -56,20 +132,8 @@
 				"publicationRemoved"
 			],
 			[
-				"get",
-				"getPublications"
-			],
-			[
 				"publications",
 				"publications"
-			],
-			[
-				"follo",
-				"followsClean"
-			],
-			[
-				"user",
-				"userId"
 			],
 			[
 				"save",
@@ -114,10 +178,6 @@
 			[
 				"iden",
 				"identityUserId"
-			],
-			[
-				"pa",
-				"params"
 			],
 			[
 				"fun",
@@ -168,20 +228,12 @@
 				"authorization"
 			],
 			[
-				"use",
-				"UserController"
-			],
-			[
 				"b",
 				"bcrypt"
 			],
 			[
 				"se",
 				"send"
-			],
-			[
-				"to",
-				"toLowerCase"
 			],
 			[
 				"n",
@@ -216,19 +268,19 @@
 	"buffers":
 	[
 		{
-			"file": "api/app.js",
+			"file": "api/Apuntes curso red socual",
 			"settings":
 			{
-				"buffer_size": 1005,
+				"buffer_size": 3081,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "api/Apuntes curso red socual",
+			"file": ".gitignore",
 			"settings":
 			{
-				"buffer_size": 1365,
+				"buffer_size": 1264,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -266,26 +318,34 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/juniorportom/projects/node/curso-mean-social",
-		"/Users/juniorportom/projects/node/curso-mean-social/api",
-		"/Users/juniorportom/projects/node/curso-mean-social/api/controllers",
-		"/Users/juniorportom/projects/node/curso-mean-social/api/middlewares",
-		"/Users/juniorportom/projects/node/curso-mean-social/api/models",
-		"/Users/juniorportom/projects/node/curso-mean-social/api/routes",
-		"/Users/juniorportom/projects/node/curso-mean-social/api/uploads",
-		"/Users/juniorportom/projects/node/curso-mean-social/api/uploads/publications",
-		"/Users/juniorportom/projects/node/curso-mean-social/api/uploads/users"
 	],
 	"file_history":
 	[
+		"/Users/juniorportom/projects/node/curso-mean-social/client/src/app/services/user.guard.ts",
+		"/Users/juniorportom/projects/node/curso-mean-social/client/src/app/app.module.ts",
+		"/Users/juniorportom/projects/node/curso-mean-social/client/src/app/app.routing.ts",
+		"/Users/juniorportom/projects/node/curso-mean-social/client/src/app/messages/messages-routing.module.ts",
+		"/Users/juniorportom/projects/node/curso-mean-social/client/src/app/components/publications/publications.component.ts",
+		"/Users/juniorportom/projects/node/curso-mean-social/client/src/app/components/publications/publications.component.html",
+		"/Users/juniorportom/projects/node/curso-mean-social/client/src/assets/styles.css",
+		"/Users/juniorportom/projects/node/curso-mean-social/client/src/app/messages/messages.module.ts",
+		"/Users/juniorportom/projects/node/curso-mean-social/client/src/app/messages/components/sended/sended.component.ts",
+		"/Users/juniorportom/projects/node/curso-mean-social/client/src/app/messages/components/received/received.component.ts",
+		"/Users/juniorportom/projects/node/curso-mean-social/client/src/app/messages/components/sended/sended.component.html",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/controllers/message.js",
+		"/Users/juniorportom/projects/node/curso-mean-social/client/src/app/messages/components/received/received.component.html",
+		"/Users/juniorportom/projects/node/curso-mean-social/client/src/app/services/message.service.ts",
+		"/Users/juniorportom/projects/node/curso-mean-social/client/src/app/messages/components/add/add.component.ts",
+		"/Users/juniorportom/projects/node/curso-mean-social/client/src/app/messages/components/add/add.component.html",
+		"/Users/juniorportom/projects/node/curso-mean-social/client/src/app/app.component.html",
+		"/Users/juniorportom/projects/node/curso-mean-social/client/src/app/services/follow.service.ts",
+		"/Users/juniorportom/projects/node/curso-mean-social/api/app.js",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/Apuntes curso red socual",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/models/message.js",
-		"/Users/juniorportom/projects/node/curso-mean-social/api/controllers/message.js",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/routes/message.js",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/controllers/publication.js",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/routes/publication.js",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/controllers/user.js",
-		"/Users/juniorportom/projects/node/curso-mean-social/api/app.js",
 		"/Users/juniorportom/Library/Application Support/Sublime Text 3/Packages/User/JavaScript.sublime-build",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/routes/user.js",
 		"/Users/juniorportom/projects/node/curso-mean-social/api/controllers/follow.js",
@@ -301,7 +361,7 @@
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 42.0
 	},
 	"find_in_files":
 	{
@@ -315,6 +375,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"emitter",
+			"follow",
+			"follow.followed",
+			"follow",
 			"bod"
 		],
 		"highlight": true,
@@ -338,27 +402,33 @@
 			[
 				{
 					"buffer": 0,
-					"file": "api/app.js",
+					"file": "api/Apuntes curso red socual",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1005,
+						"buffer_size": 3081,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								836,
-								836
+								3081,
+								3081
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": false,
+								"indentSize": 4,
+								"tabSize": 4
+							}
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1329.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -366,19 +436,19 @@
 				},
 				{
 					"buffer": 1,
-					"file": "api/Apuntes curso red socual",
+					"file": ".gitignore",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1365,
+						"buffer_size": 1264,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1365,
-								1365
+								23,
+								23
 							]
 						],
 						"settings":
@@ -386,7 +456,7 @@
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 9.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -397,7 +467,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 23.0
+		"height": 29.0
 	},
 	"input":
 	{
@@ -426,6 +496,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.doc":
+	{
+		"height": 0.0
+	},
 	"output.exec":
 	{
 		"height": 102.0
@@ -438,7 +512,7 @@
 	"project": "curso-mean-social.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 54.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -476,7 +550,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 270.0,
+	"side_bar_width": 384.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

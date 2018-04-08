@@ -1,0 +1,35 @@
+<div>
+	<h1>Este es el {{title}}</h1>
+	<form>
+		<p>
+			<label>Valor2.Nombre</label>
+			<br>
+			<input type="text" name="name" #name="ngModel" [(ngModel)]="valor2.name" />
+		</p>
+		<p>
+			<label>Valor2.Edad</label>
+			<br>
+			<input type="text" name="edad" #edad="ngModel" [(ngModel)]="valor2.edad" />
+		</p>
+		<p>
+			<label>Valor2.Nick</label>
+			<br>
+			<input type="text" name="nick" #nick="ngModel" [(ngModel)]="valor2.nick" />
+		</p>
+		<p>
+			<label>Valor1</label>
+			<br>
+			<input type="text" name="valor1" [(ngModel)]="valor1" />
+		</p>
+	</form>
+	<div *ngIf="datoRecibido">
+		<h1>Valor recibido desde el hijo: {{datoRecibido.nombre}}</h1>
+		<h1>{{datoRecibido.correo}}</h1>
+		<h1>{{datoRecibido.telefono}}</h1>
+	</div>
+	
+</div>
+<children [text1]="valor1"
+		[text2]="valor2"
+		(fromChildren)="recibirDatos($event)"
+></children>

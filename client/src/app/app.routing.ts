@@ -13,6 +13,9 @@ import { FollowingComponent } from './components/following/following.component';
 import { FollowedComponent } from './components/followed/followed.component';
 import { UserGuard } from './services/user.guard';
 
+// Componentes para demo de propiedades @Input y @Output
+import { FatherComponent } from './components/father/father.component';
+
 const appRoutes: Routes = [
 	{path: '', component: HomeComponent},
 	{path: 'home', component: HomeComponent},
@@ -25,6 +28,7 @@ const appRoutes: Routes = [
 	{path: 'perfil/:id', component: ProfileComponent, canActivate:[UserGuard]},
 	{path: 'siguiendo/:id/:page', component: FollowingComponent, canActivate:[UserGuard]},
 	{path: 'seguidores/:id/:page', component: FollowedComponent, canActivate:[UserGuard]},
+	{path: 'father', component: FatherComponent},
 	{path: '**', component: HomeComponent}
 
 ]; 

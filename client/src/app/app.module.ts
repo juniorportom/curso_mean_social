@@ -23,6 +23,11 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { FollowingComponent } from './components/following/following.component';
 import { FollowedComponent } from './components/followed/followed.component';
 
+// Componentes para demo de propiedades @Input y @Output
+import { FatherComponent } from './components/father/father.component';
+import { ChildrenComponent } from './components/children/chlidren.component';
+
+
 // Servicios
 import { UserService } from './services/user.service';
 import { UserGuard } from './services/user.guard';
@@ -41,7 +46,9 @@ import { UserGuard } from './services/user.guard';
     PublicationsComponent,
     ProfileComponent,
     FollowingComponent,
-    FollowedComponent
+    FollowedComponent,
+    FatherComponent,
+    ChildrenComponent
   ],
   imports: [
     BrowserModule,

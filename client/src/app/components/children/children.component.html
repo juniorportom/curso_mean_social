@@ -1,0 +1,18 @@
+<div>
+	<h3>Este es el {{title}}</h3>
+	<ul>
+		<li *ngIf="property1">
+			{{property1}}
+		</li>
+		<li>
+			{{property2.name}}
+		</li>
+		<li>
+			{{property2.edad}}
+		</li>
+		<li>
+			{{property2.nick}}
+		</li>
+	</ul>
+	<button (click)="enviar()" >Enviar datos al padre</button>
+</div>
