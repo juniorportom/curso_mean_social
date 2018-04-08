@@ -13,6 +13,10 @@ import { MainComponent } from './components/main/main.component';
 import { ReceivedComponent} from './components/received/received.component';
 import { SendedComponent} from './components/sended/sended.component';
 
+// Servicios
+import { UserService } from '../services/user.service';
+import { UserGuard } from '../services/user.guard';
+
 @NgModule({
 	declarations: [
 		MainComponent,
@@ -33,7 +37,8 @@ import { SendedComponent} from './components/sended/sended.component';
 		SendedComponent
 	],
 	providers: [
-
+		UserService,
+		UserGuard
 	]
 })
 
